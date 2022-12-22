@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/board/*")
 @Controller
 public class BoardController {
-
+//
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
 	@Inject

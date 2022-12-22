@@ -7,18 +7,20 @@ import com.ezen.myProject.domain.PagingVO;
 
 public interface BoardDAO {
 
-   int insertBoard(BoardVO bvo);
+	int insertBoard(BoardVO bvo);
 
-   List<BoardVO> selectBoardList();
+	List<BoardVO> selectBoardList();
 
-   BoardVO selectBoardOne(int bno);
+	BoardVO selectBoardOne(int bno);
 
-   void readCount(int bno);
+	void readCount(int bno);
 
-   int updateBoard(BoardVO bvo);
+	int updateBoard(BoardVO bvo);
 
-   int deleteBoard(int bno);
+	int deleteBoard(int bno);
 
-   List<BoardVO> selectBoardListPaging(PagingVO pvo);
+	List<BoardVO> selectBoardListPaging(PagingVO pvo);
+
+	int selectTotalCount();
 
 }

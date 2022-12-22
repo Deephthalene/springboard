@@ -37,4 +37,7 @@
         select * from board where isDel = "N" limit #{pageStart}, #{qty}
      </select>
   
+  	<select id="selectTotalCount" resultType="int">
+  		select count(bno) from board where isDel="N"
+  	</select>
   </mapper>

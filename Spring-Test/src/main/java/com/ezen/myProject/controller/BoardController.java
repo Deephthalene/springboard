@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ezen.myProject.domain.BoardVO;
 import com.ezen.myProject.domain.PagingVO;
 import com.ezen.myProject.domain.UserVO;
+import com.ezen.myProject.handler.PagingHandler;
 import com.ezen.myProject.repository.UserDAO;
 import com.ezen.myProject.service.BoardService;
 
@@ -52,7 +53,11 @@ public class BoardController {
    
    @GetMapping("/list")
    public String list(Model model, PagingVO pvo) {
+	  log.info(">>>> pageNo : " + pvo.getPageNo());
       List<BoardVO> list = bsv.getList(pvo);
+      int totalCount = bsv.getTotalCount();
+      PagingHandler pgh = new PagingHandler(pvo, totalCount);
+      model.addAttribute("pgh", pgh);
       model.addAttribute("list", list);
       return "/board/list";
    }
@@ -64,7 +69,6 @@ public class BoardController {
 //      model.addAttribute("board", board);
 //      return "/board/detail";
 //   }
-   
    
    // void 하고 return 없이 해도 가능
    // mapping인 detail로 다시 돌아가기 때문

@@ -2,6 +2,11 @@ package com.ezen.myProject.handler;
 
 import com.ezen.myProject.domain.PagingVO;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class PagingHandler {
 
 	private int startPage; // 현재 화면에서 보여줄 시작 페이지네이션 번호

@@ -8,16 +8,18 @@ import com.ezen.myProject.domain.UserVO;
 
 public interface BoardService {
 
-   int register(BoardVO bvo);
+	int register(BoardVO bvo);
 
-   List<BoardVO> getList();
+	List<BoardVO> getList();
 
-   BoardVO getDetail(int bno);
+	BoardVO getDetail(int bno);
 
-   int modify(BoardVO bvo, UserVO user);
+	int modify(BoardVO bvo, UserVO user);
 
-   int remove(int bno, UserVO user);
+	int remove(int bno, UserVO user);
 
-   List<BoardVO> getList(PagingVO pvo);
+	List<BoardVO> getList(PagingVO pvo);
+
+	int getTotalCount();
 
 }

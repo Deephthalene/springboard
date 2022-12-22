@@ -3,13 +3,21 @@ package com.ezen.myProject.service;
 import java.util.List;
 
 import com.ezen.myProject.domain.BoardVO;
+import com.ezen.myProject.domain.PagingVO;
+import com.ezen.myProject.domain.UserVO;
 
 public interface BoardService {
 
-	int register(BoardVO bvo);
+   int register(BoardVO bvo);
 
-	List<BoardVO> getList();
+   List<BoardVO> getList();
 
-	BoardVO getDetail(int bno);
+   BoardVO getDetail(int bno);
+
+   int modify(BoardVO bvo, UserVO user);
+
+   int remove(int bno, UserVO user);
+
+   List<BoardVO> getList(PagingVO pvo);
 
 }

@@ -72,4 +72,9 @@ public class BoardServiceImpl implements BoardService {
 		return bdao.selectTotalCount();
 	}
 
+	@Override
+	public int getTotalCount(PagingVO pvo) {
+		return bdao.searchTotalCount(pvo);
+	}
+
 }

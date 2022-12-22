@@ -18,6 +18,14 @@
 	integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
 	crossorigin="anonymous"></script>
 <style type="text/css">
+.nonemit{
+	text-decoration: none;
+	color : black;
+}
+.nonemit:hover{
+	color : black;
+}
+
 h1 {
 	text-align: center;
 }
@@ -31,11 +39,63 @@ h1 {
 .reg {
 	margin-left: 5px;
 }
+.col-md-6{
+display:flex;
+justify-content: flex-end;
+}
+
 </style>
 </head>
 <body>
 	<jsp:include page="../layout/header.jsp"></jsp:include>
-	<h1>게시판</h1>
+	<h1><a class="nonemit" href="/board/list">게시판</a></h1>
+	<!-- search -->
+
+	<div class="col-sm-12 col-md-6">
+
+		<form action="/board/list" method="get">
+
+			<div class="input-group mb-3">
+
+				<!-- 값을 별도 저장 -->
+
+				<c:set value="${pgh.pgvo.type }" var="typed" />
+
+				<select class="form-select" name="type">
+
+					<option ${typed == null ? 'selected':'' }>Choose...</option>
+
+					<option value="t" ${typed eq 't' ? 'selected':'' }>Title</option>
+
+					<option value="c" ${typed eq 'c' ? 'selected':'' }>Content</option>
+
+					<option value="w" ${typed eq 'w' ? 'selected':'' }>Writer</option>
+
+
+
+				</select> <input class="form-control" type="text" name="keyword"
+					placeholder="Search" value="${pgh.pgvo.keyword }"> <input
+					type="hidden" name="pageNo" value="1"> <input type="hidden"
+					name="qty" value="${pgh.pgvo.qty }">
+
+				<button type="submit" class="btn btn-success position-relative">
+
+					Search <span
+						class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+
+						${pgh.totalCount } <span class="visually-hidden">unread
+							messages</span>
+					</span>
+
+				</button>
+
+			</div>
+
+		</form>
+
+	</div>
+
+
 	<div class="container">
 		<table class="table">
 			<thead>
@@ -64,21 +124,22 @@ h1 {
 
 	<!-- paging line -->
 	<nav aria-label="Page navigation example">
-	<div class="container">
-		<ul class="pagination">
-			<c:if test="${pgh.prev}">
-				<li class="page-item"><a class="page-link"
-					href="/board/list?pageNo=${pgh.startPage - 1}&qty=${pgh.pgvo.qty}">Previous</a></li>
-			</c:if>
-			<c:forEach begin="${pgh.startPage}" end="${pgh.endPage}" var="i">
-				<li class="page-item"><a class="page-link"
-					href="/board/list?pageNo=${i}&qty=${pgh.pgvo.qty}">${i}</a></li>
-			</c:forEach>
-			<c:if test="${pgh.next}">
-			<li class="page-item"><a class="page-link" href="/board/list?pageNo=${pgh.endPage + 1}&qty=${pgh.pgvo.qty}">Next</a></li>
-			</c:if>
-		</ul>
-			</div>
+		<div class="container">
+			<ul class="pagination">
+				<c:if test="${pgh.prev}">
+					<li class="page-item"><a class="page-link"
+						href="/board/list?pageNo=${pgh.startPage - 1}&qty=${pgh.pgvo.qty}&type=${pgh.pgvo.type}&keyword=${pgh.pgvo.keyword}">Previous</a></li>
+				</c:if>
+				<c:forEach begin="${pgh.startPage}" end="${pgh.endPage}" var="i">
+					<li class="page-item"><a class="page-link"
+						href="/board/list?pageNo=${i}&qty=${pgh.pgvo.qty}&type=${pgh.pgvo.type}&keyword=${pgh.pgvo.keyword}">${i}</a></li>
+				</c:forEach>
+				<c:if test="${pgh.next}">
+					<li class="page-item"><a class="page-link"
+						href="/board/list?pageNo=${pgh.endPage + 1}&qty=${pgh.pgvo.qty}&type=${pgh.pgvo.type}&keyword=${pgh.pgvo.keyword}">Next</a></li>
+				</c:if>
+			</ul>
+		</div>
 	</nav>
 
 	<div class="container">

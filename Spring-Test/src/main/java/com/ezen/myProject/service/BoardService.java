@@ -22,4 +22,6 @@ public interface BoardService {
 
 	int getTotalCount();
 
+	int getTotalCount(PagingVO pvo);
+
 }
